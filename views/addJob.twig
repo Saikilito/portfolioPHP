@@ -1,0 +1,17 @@
+{% extends "Layout/layout.twig" %}
+
+{% block content %}
+
+<h1 class="text-center">Add Job!</h1>
+
+<form action="/jobs/add" method="post" class="form-control d-flex justify-content-center">
+    <label for="">Title</label>
+    <input name="title" type="text">
+    <br>
+    <label for="">Description</label>
+    <input name="description" type="text">
+    <br>
+    <button type="submit">Save</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+RewriteEngine On
+RewriteCond %{THE_REQUEST} /public/([^\s?]*) [NC]
+RewriteRule ^ %1 [L,NE,R=302]
+RewriteRule ^((?!/public).*)$ public/$1 [L,NC]
+
+# Explanation
+
+## RewriteCond %{THE_REQUEST} /public/([^\s?]*) [NC]
+### Evaluate the URL of the requets received
+### Verify if content "/public/<any character different of space or question mark >"
+### Don't case sensitive
+
+## RewriteRule ^ %1 [L,NE,R=302]
+### Replace all the URL after "public/" in onwards for the match ([^\s?]*)
+### Indicating that it is the last rule [L]
+### Don't space of the specials chars [NE]
+### Return a 302 rediction a the new URL [R=302]
