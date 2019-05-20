@@ -1,13 +1,17 @@
 <?php
 
-
-require('../app/Controllers/display_errors.php');
+require('../lib/display_errors.php');
 require('../vendor/autoload.php');
 
-require('../app/Controllers/db_connection.php');
-require('../app/Controllers/diactoros.php');//request
+session_start();
 
-require('../app/Controllers/aura.php');
+$dotenv = Dotenv\Dotenv::create(__DIR__ . '\..' );
+$dotenv->load();
 
+
+require('../lib/db_connection.php');
+require('../lib/diactoros.php');//request
+
+require('../lib/aura.php');
 
 ?>

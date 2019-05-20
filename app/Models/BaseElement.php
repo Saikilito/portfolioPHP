@@ -6,20 +6,13 @@ namespace App\Models;
 class BaseElement implements Printable{
     public $title;
     public $description;
-    public $visible = true;
     public $months;
+    public $filename;
+    public $visible = true;
 
     public function __construct($title,$description){
         $this->title = $title;
         $this->description = $description;
-    }
-
-    public function getTitle(){
-        return $this->title;
-    }
-
-    public function setTitle($title){
-        $this->title = $title ;
     }
 
     public function getDurationAsString(){

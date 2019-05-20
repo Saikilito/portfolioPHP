@@ -11,22 +11,30 @@ class JobsController extends BaseController {
         $responseMessage = null;
 
         if($request->getMethod() == 'POST')
-        {
-            $postData = $request->getParsedBody();
-
+        {            
             $jobValidator = v::key('title', v::stringType()->notEmpty()) 
-                            ->key('description', v::stringType()->notEmpty()); // true  
+                ->key('description', v::stringType()->notEmpty()); // true  
+            
             try{
+                
+                $postData = $request->getParsedBody();
+                
                 $jobValidator->assert($postData);
                 
-                if($jobValidator->validate($postData))
-                {
-                    $job = new Job();
-                    $job->title = $postData['title'];
-                    $job->description = $postData['description'];
-                    $job->visible = true ;
-                    $job->save();
+                $files = $request->getUploadedFiles();
+                $avatar = $files['jobAvatar'];
+
+                if($avatar->getError() == UPLOAD_ERR_OK){
+                    $fileName = $avatar->getClientFilename();
+                    $avatar->moveTo("uploads/$fileName");
                 }
+
+                $job = new Job();
+                $job->title = $postData['title'];
+                $job->description = $postData['description'];
+                $job->filename = $fileName;
+                $job->visible = true ;
+                $job->save();
 
                 $responseMessage = 'Saved!';
             }   
@@ -40,14 +48,5 @@ class JobsController extends BaseController {
         ]);
     }
 }
-
-// if(!empty($_POST))
-// {
-    // $job = new Job();
-    // $job->title = $_POST['title'];
-    // $job->description = $_POST['description'];
-    // $job->visible = true ;
-    // $job->save();
-// }
 
 ?>

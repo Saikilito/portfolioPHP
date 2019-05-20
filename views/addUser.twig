@@ -1,0 +1,36 @@
+{% extends "Layout/layout.twig" %}
+
+{% block content %}
+
+<h1 class="text-center">Add User!</h1>
+
+<div class="alert alert-primary" role="alert">
+    {{responseMessage}}
+</div>
+
+<form action="/users/add" method="post" class="container">
+    <div class="row justify-content-center">
+        <div class="col-3 form-group">
+            <label for="title">e-Mail</label>
+            <input class="form-control" name="email" type="email">
+        </div>
+        <br>
+        <div class="col-3 form-group">
+            <label for="description">Password</label>
+            <input class="form-control" name="password" type="password">
+        </div>
+        <div class="col-3 form-group">
+            <label for="description">Confirm Password</label>
+            <input class="form-control" name="password2" type="password">
+        </div>
+        <br>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-6 form-group">
+            <button type="submit" class="btn btn-danger btn-block mt-5" >Create User</button>
+        </div>
+    </div>
+    <br>
+</form>
+
+{% endblock %}

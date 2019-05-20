@@ -24,3 +24,7 @@
 .project {
     margin-bottom: 40px;
 }
+
+.img-control{
+    max-width: 150px;
+}
